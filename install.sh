@@ -48,6 +48,10 @@ main() {
         need_cmd unzip
         ensure unzip -oq "${_package}"
         ;;
+    *.dpkg)
+        need_cmd dpkg
+        ensure dpkg -i "${_package}"
+        ;;
     *)
         err "unsupported package format: ${_package}"
         ;;
@@ -157,6 +161,7 @@ download_zoxide() {
     case "${_package_url}" in
     *.tar.gz) _ext="tar.gz" ;;
     *.zip) _ext="zip" ;;
+    *.dpkg) _ext="dpkg" ;;
     *) err "unsupported package format: ${_package_url}" ;;
     esac
 
